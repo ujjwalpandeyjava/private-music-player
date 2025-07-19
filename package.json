@@ -5,6 +5,7 @@
   "scripts": {
     "dev": "next dev --turbopack",
     "build": "next build",
+    "startProd": "npm run start",
     "s": "npm run dev",
     "i": "npm install",
     "start": "next start",

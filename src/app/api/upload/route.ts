@@ -46,7 +46,11 @@ export async function POST(request: NextRequest) {
 			thumbnailName: thumbFileName,
 		});
 	} catch (e) {
-		return NextResponse.json({ error: "Failed to upload." }, { status: 500 });
+		const errorMessage = e instanceof Error ? e.message : "Unknown error occurred";
+		return NextResponse.json({
+			error: "Failed to upload.",
+			errorMessage: errorMessage
+		}, { status: 500 });
 	}
 }
 
@@ -72,6 +76,10 @@ export async function GET() {
 		});
 		return NextResponse.json(tracks);
 	} catch (e) {
-		return NextResponse.json({ error: "Could not read upload directory." }, { status: 500 });
+		const errorMessage = e instanceof Error ? e.message : "Unknown error occurred";
+		return NextResponse.json({
+			error: "Could not read upload directory.",
+			errorMessage: errorMessage
+		}, { status: 500 });
 	}
 }
